@@ -128,3 +128,14 @@ npm i styled-components styled-system
 
 With styled-components, need to do some magic to make it work well with SSR
 https://www.styled-components.com/docs/advanced#server-side-rendering
+
+Need to also modify client.jsx hydrate method
+```
+() => {
+    // [ReHydratation](https://github.com/cssinjs/jss/blob/master/docs/ssr.md)
+    const jssStyles = document.getElementById('jss-ssr')
+    if (jssStyles && jssStyles.parentNode) {
+      jssStyles.parentNode.removeChild(jssStyles)
+    }
+  }
+```

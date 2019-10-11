@@ -3,11 +3,12 @@
 /* eslint-disable import/no-dynamic-require */
 /* eslint-disable react/jsx-filename-extension */
 
-import App from './App'
+import Routes from './ui/routes'
 import React from 'react'
 import { StaticRouter } from 'react-router-dom'
 import express from 'express'
 import { renderToString } from 'react-dom/server'
+import { ServerStyleSheet } from 'styled-components'
 
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST)
 
@@ -17,11 +18,18 @@ server
   .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
   .get('/*', (req, res) => {
     const context = {}
-    const markup = renderToString(
+
+    // Create the server side style sheet
+    const sheet = new ServerStyleSheet()
+
+    const markup = renderToString(sheet.collectStyles(
       <StaticRouter context={context} location={req.url}>
-        <App />
+        <Routes />
       </StaticRouter>
-    )
+    ))
+
+    // Generate all the style tags so they can be rendered into the page
+    const css = sheet.getStyleTags()
 
     if (context.url) {
       res.redirect(context.url)
@@ -39,6 +47,7 @@ server
             ? `<link rel="stylesheet" href="${assets.client.css}">`
             : ''
         }
+        ${css}
         ${
           process.env.NODE_ENV === 'production'
             ? `<script src="${assets.client.js}" defer></script>`
