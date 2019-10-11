@@ -1,0 +1,36 @@
+{
+  "name": "my-razzle-app",
+  "version": "0.1.0",
+  "license": "MIT",
+  "scripts": {
+    "lint:deps": "npx updated",
+    "lint:js": "npx eslint src",
+    "lint:ec": "npx editorconfig-checker -exclude '(node_modules|\\.git|build|public).*' .",
+    "lint": "npx npm-run-all -p lint:*",
+    "test": "npm run lint && npm run unit && npm audit --audit-level=moderate",
+    "unit": "jest",
+    "start": "razzle start",
+    "build": "razzle build",
+    "unit:changes": "razzle test --env=jsdom",
+    "start:prod": "NODE_ENV=production node build/server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "jest": "^24.9.0",
+    "razzle": "^3.0.0",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "react-router-dom": "^5.1.2",
+    "styled-components": "^4.4.0",
+    "styled-system": "^5.1.2"
+  },
+  "devDependencies": {
+    "eslint": "^6.5.1",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^22.17.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react-hooks": "^2.1.2"
+  }
+}
