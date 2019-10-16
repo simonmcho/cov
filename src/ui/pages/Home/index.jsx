@@ -8,7 +8,9 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        <Sample />
+        <h1>
+          Hello world
+        </h1>
       </div>
     )
   }
