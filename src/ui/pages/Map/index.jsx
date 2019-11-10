@@ -5,6 +5,7 @@ import { Link as ReactRouterLink } from 'react-router'
 
 import RenderMap from './components/RenderMap'
 
+import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
@@ -14,7 +15,31 @@ import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(4),
+    minWidth: '400px',
+  },
+  selectWidth: {
+    minWidth: 120
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+}))
+
 const Map = () => {
+  const classes = useStyles()
+  const [cameraType, setCameraType] = React.useState('All')
+
+
+  const handleChange = (e) => {
+    const { value } = e.target
+    setCameraType(value)
+  }
+
+  console.log(cameraType)
+
   return (
     <Grid
       container
@@ -41,26 +66,34 @@ const Map = () => {
         </Box>
         <Box>
           <Typography variant="p">Filter by signal types</Typography>
-          <FormControl>
-            <InputLabel id="demo-mutiple-name-label">Signal Light Types</InputLabel>
-            <Select>
-              <MenuItem value="Count Station">
-                Count Station
-              </MenuItem>
-              <MenuItem value="Fixed Time">
-                Fixed Time
-              </MenuItem>
-              <MenuItem value="Ped / Cyc Actuated">
-                Ped / Cyc Actuated
-              </MenuItem>
-              <MenuItem value="Semi-Actuated">
-                Semi-Actuated
-              </MenuItem>
-              <MenuItem value="RRFB">
-                RRFB
-              </MenuItem>
-            </Select>
-          </FormControl>
+          <Box>
+            <FormControl className={classes.formControl}>
+              <Select
+                value={cameraType}
+                labelWidth={classes.selectWidth}
+                onChange={handleChange}
+              >
+                <MenuItem value="All">
+                  All
+                </MenuItem>
+                <MenuItem value="Count Station">
+                  Count Station
+                </MenuItem>
+                <MenuItem value="Fixed Time">
+                  Fixed Time
+                </MenuItem>
+                <MenuItem value="Ped / Cyc Actuated">
+                  Ped / Cyc Actuated
+                </MenuItem>
+                <MenuItem value="Semi-Actuated">
+                  Semi-Actuated
+                </MenuItem>
+                <MenuItem value="RRFB">
+                  RRFB
+                </MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
         </Box>
       </Box>
       <Box mx={3} my={3}>
