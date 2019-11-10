@@ -3,6 +3,7 @@ import { Circle, HeatmapLayer, useLoadScript } from '@react-google-maps/api'
 import { useSelector, useDispatch } from 'react-redux'
 import { getRoadData } from '../../selectors'
 
+
 const defaultOptions = {
   strokeOpacity: 0.8,
   strokeWeight: 2,
@@ -44,27 +45,28 @@ const options = {
 }
 
 const TrafficLights = () => {
-  const trafficLightData = useSelector((state) => state.get('trafficLightData'))
+  const filteredTrafficLightData = useSelector((state) => state.getIn(['trafficLightData', 'filteredData']))
+  console.log(filteredTrafficLightData)
   return (
     <div>
     {
-      trafficLightData.map((light, index) => {
+      filteredTrafficLightData.map((data, index) => {
         if (index === 0) {
           return <div />
         }
-        const signalizedIntersection = light.get(0)
-        const assetID = light.get(1)
-        const camera = light.get(11)
-        const signalType = light.get(5)
-        const ups = light.get(10)
-        const sysCount = light.get(26)
+        const signalizedIntersection = data.get(0)
+        const assetID = data.get(1)
+        const camera = data.get(11)
+        const signalType = data.get(5)
+        const ups = data.get(10)
+        const sysCount = data.get(26)
         return (
           <Circle
             center={{
-              lat: Number(light.get(30)),
-              lng: Number(light.get(31))
+              lat: Number(data.get(30)),
+              lng: Number(data.get(31))
             }}
-            options={options[light.get(5)]}
+            options={options[data.get(5)]}
           />
         )
       })

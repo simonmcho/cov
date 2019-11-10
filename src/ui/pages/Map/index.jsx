@@ -1,7 +1,10 @@
 /* eslint-disable */
 import React from 'react'
-import { GoogleMap, InfoBox, LoadScript, Circle, HeatmapLayer, useLoadScript } from '@react-google-maps/api'
-import { Link as ReactRouterLink } from 'react-router'
+import { fromJS } from 'immutable'
+import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+
+import { FILTER_TRAFFIC_LIGHT_DATA } from '../../actions/action-names'
 
 import RenderMap from './components/RenderMap'
 
@@ -29,16 +32,29 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const Map = () => {
+  const dispatch = useDispatch()
+  const allTrafficLightData = useSelector((state) => state.getIn(['trafficLightData', 'allData']))
+  const history = useHistory()
   const classes = useStyles()
   const [cameraType, setCameraType] = React.useState('All')
 
 
   const handleChange = (e) => {
     const { value } = e.target
+    const filteredData = []
+    allTrafficLightData.map((data, index) => {
+      if (index === 0) {
+        return
+      }
+      const signalType = data.get(5)
+      if (signalType === value) {
+        filteredData.push(data)
+      }
+    })
+    
+    dispatch({ type: FILTER_TRAFFIC_LIGHT_DATA, payload: filteredData })
     setCameraType(value)
   }
-
-  console.log(cameraType)
 
   return (
     <Grid
