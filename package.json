@@ -9,11 +9,10 @@
     "lint": "npx npm-run-all -p lint:*",
     "test": "npm run lint && npm run unit && npm audit --audit-level=moderate",
     "unit": "jest",
-    "dev": "npm run start",
-    "start": "razzle start",
+    "dev": "RAZZLE_APP_ENV=development NODE_ENV=development razzle start",
     "build": "razzle build",
     "unit:changes": "razzle test --env=jsdom",
-    "start:prod": "NODE_ENV=production node build/server.js"
+    "start": "NODE_ENV=production node build/server.js"
   },
   "dependencies": {
     "@material-ui/core": "4.6.0",

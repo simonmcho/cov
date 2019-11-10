@@ -21,7 +21,7 @@ const RenderMap = () => {
         }}
         zoom={13}
         center={{
-          lat: 49.246292,
+          lat: 49.246,
           lng: -123.116226
         }}
       >
