@@ -1,4 +1,5 @@
 import { fromJS } from 'immutable'
+// import transit from 'transit-immutable-js' // https://www.npmjs.com/package/transit-immutable-js
 
 import { UPLOAD } from './actions/action-names'
 

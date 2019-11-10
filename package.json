@@ -9,6 +9,7 @@
     "lint": "npx npm-run-all -p lint:*",
     "test": "npm run lint && npm run unit && npm audit --audit-level=moderate",
     "unit": "jest",
+    "dev": "npm run start",
     "start": "razzle start",
     "build": "razzle build",
     "unit:changes": "razzle test --env=jsdom",
@@ -39,7 +40,7 @@
     "redux-thunk": "^2.3.0",
     "styled-components": "^4.4.0",
     "styled-system": "^5.1.2",
-    "transit-immutable-js": "0.7.0",
+    "transit-immutable-js": "^0.7.0",
     "transit-js": "^0.8.861"
   },
   "devDependencies": {

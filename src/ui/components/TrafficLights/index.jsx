@@ -11,7 +11,7 @@ const defaultOptions = {
   draggable: false,
   editable: false,
   visible: true,
-  radius: 100,
+  radius: 20,
   zIndex: 1
 }
 
@@ -45,7 +45,6 @@ const options = {
 
 const TrafficLights = () => {
   const trafficLightData = useSelector((state) => state.get('trafficLightData'))
-
   return (
     <div>
     {
@@ -53,6 +52,12 @@ const TrafficLights = () => {
         if (index === 0) {
           return <div />
         }
+        const signalizedIntersection = light.get(0)
+        const assetID = light.get(1)
+        const camera = light.get(11)
+        const signalType = light.get(5)
+        const ups = light.get(10)
+        const sysCount = light.get(26)
         return (
           <Circle
             center={{
@@ -69,22 +74,3 @@ const TrafficLights = () => {
 }
 
 export default TrafficLights
-
-  {/* {
-      trafficLightData.map((light, index) => {
-        if (index === 0) {
-          return <div />
-        }
-        // console.log(light.get(5))
-        console.log(options[light.get(5)])
-        return (
-          <Circle
-            center={{
-              lat: parseInt(light.get(30)),
-              lng: parseInt(light.get(31))
-            }}
-            options={options[light.get(5)]}
-          />
-        )
-      })
-    } */}

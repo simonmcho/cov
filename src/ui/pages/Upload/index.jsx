@@ -29,6 +29,7 @@ const Uploader = () => {
       </Box>
     )
   }
+  console.log(roadData)
   return (
     <Box my={3} mx={3}>
       <Box>
