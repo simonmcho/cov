@@ -3,8 +3,6 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import CSVReader from 'react-csv-reader'
 
-import history from '../../history'
-
 import { UPLOAD } from '../../actions/action-names'
 import { getRoadData } from '../../selectors'
 
