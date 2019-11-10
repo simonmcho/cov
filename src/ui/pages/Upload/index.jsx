@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import CSVReader from 'react-csv-reader'
+import { useHistory } from 'react-router-dom'
 
 import { UPLOAD } from '../../actions/action-names'
 import { getRoadData } from '../../selectors'
@@ -14,6 +15,7 @@ const Uploader = () => {
   const dispatch = useDispatch()
   const roadData = useSelector((state) => getRoadData(state))
   const hasData = useSelector((state) => state.get('hasData'))
+  const history = useHistory()
   
   if (!hasData) {
     return (
@@ -32,8 +34,8 @@ const Uploader = () => {
       <Box>
         <Typography variant="p">Your CSV File has been successfully uploaded.</Typography>
         <Box my={4}>
-          <Button size="large" variant="contained">Click here to go back home</Button>
-          <Button size="large" variant="contained">Click here to go to your updated map</Button>
+          <Button onClick={() => { history.push('/')}} size="large" variant="contained">Click here to go back home</Button>
+          <Button onClick={() => { history.push('/map')}} size="large" variant="contained">Click here to go to your updated map</Button>
         </Box>
       </Box>
       <CSVReader

@@ -1,6 +1,4 @@
-
-import Papa from 'papaparse'
-
-export const getTrafficLights = () => {
-  const numberOfLights = 
-}
+// import { getRoadData } from '../../selectors'
+// export const getTrafficLights = () => {
+//   getRoadData
+// }
