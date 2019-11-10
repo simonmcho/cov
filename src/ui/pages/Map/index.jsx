@@ -1,6 +1,5 @@
 /* eslint-disable */
 import React from 'react'
-import { fromJS } from 'immutable'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
@@ -41,19 +40,24 @@ const Map = () => {
 
   const handleChange = (e) => {
     const { value } = e.target
-    const filteredData = []
-    allTrafficLightData.map((data, index) => {
-      if (index === 0) {
-        return
-      }
-      const signalType = data.get(5)
-      if (signalType === value) {
-        filteredData.push(data)
-      }
-    })
-    
-    dispatch({ type: FILTER_TRAFFIC_LIGHT_DATA, payload: filteredData })
     setCameraType(value)
+    if (value.toLowerCase() === 'all') {
+      dispatch({ type: FILTER_TRAFFIC_LIGHT_DATA, payload: allTrafficLightData.toJS() })
+    } else {
+      const filteredData = []
+      allTrafficLightData.map((data, index) => {
+        if (index === 0) {
+          return
+        }
+        const signalType = data.get(5)
+        if (signalType === value) {
+          filteredData.push(data)
+        }
+      })
+      
+      dispatch({ type: FILTER_TRAFFIC_LIGHT_DATA, payload: filteredData })
+    }
+    
   }
 
   return (

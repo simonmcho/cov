@@ -46,7 +46,6 @@ const options = {
 
 const TrafficLights = () => {
   const filteredTrafficLightData = useSelector((state) => state.getIn(['trafficLightData', 'filteredData']))
-  console.log(filteredTrafficLightData)
   return (
     <div>
     {
