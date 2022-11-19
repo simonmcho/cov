@@ -25,7 +25,7 @@
     "immutable": "^4.0.0-rc.12",
     "jest": "^24.9.0",
     "material-ui": "^0.20.2",
-    "razzle": "^3.0.0",
+    "razzle": "^4.2.18",
     "react": "^16.10.2",
     "react-csv-reader": "^2.0.2",
     "react-csv-uploader": "0.0.4",
