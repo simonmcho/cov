@@ -20,7 +20,7 @@
     "@material-ui/pickers": "3.2.7",
     "@material-ui/styles": "4.6.0",
     "@react-google-maps/api": "^1.7.9",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "history": "^4.10.1",
     "immutable": "^4.0.0-rc.12",
     "jest": "^24.9.0",
