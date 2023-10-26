@@ -139,5 +139,3 @@ Need to also modify client.jsx hydrate method
     }
   }
 ```
-
-### 4. Add redux, thunk
